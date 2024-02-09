@@ -16,5 +16,9 @@
    ```
 1. Use MPI and the `run_allgather.sh` script to launch `allgather.py`: `mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu`
 
-Note that `mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu` works as expected but `mpiexec.hydra -n 2 run_allgather.sh ccl 3_000_000 xpu` does not work.
+Note that 
+
+1. Running with a small tensor on the XPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu` works as expected.
+1. Running with a slightly bigger tensor on the XPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 3_000_000 xpu` does not work.
 Running on the CPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 3_000_000 cpu` does work.
+

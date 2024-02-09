@@ -33,9 +33,9 @@ def main(backend, shape, device):
 
     if device == "xpu":
         # Explicitly send tensors to different XPUs
-        DEVICE = "xpu:" + str(RANK)
-    print("moving to", DEVICE, flush=True)
-    tensor = tensor.to(DEVICE)
+        device = "xpu:" + str(RANK)
+    print("moving to", device, flush=True)
+    tensor = tensor.to(device)
 
     # First method of size calculation
     tensor_size = 1
@@ -53,12 +53,13 @@ def main(backend, shape, device):
     # A list into which we can receive data from other ranks
     print("making space", flush=True)
     tensor_list = [
-        torch.zeros(TSHAPE, dtype=torch.float32).to(DEVICE)
+        torch.zeros(TSHAPE, dtype=torch.float32).to(device)
         for _ in range(int(WORLD_SIZE))
     ]
 
     print("gathering", flush=True)
     dist.all_gather(tensor_list, tensor)
+    print("gathered", flush=True)
 
 
 if __name__ == "__main__":

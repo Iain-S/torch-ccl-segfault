@@ -4,7 +4,7 @@
 
 ## Steps
 
-1. Install PyTorch, the Intel Extensions and the CCL Bindings with
+1. Install PyTorch, the Intel Extensions and the CCL Bindings with:
    ```shell
    python -m pip install \
    torch==2.1.0a0 \
@@ -14,11 +14,14 @@
    oneccl-bind-pt==2.1.100+xpu \
    --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
    ```
-1. Use MPI and the `run_allgather.sh` script to launch `allgather.py`: `mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu`
-
-Note that 
+1. Use MPI and the `run_allgather.sh` script to launch `allgather.py`:
+   ```shell
+   mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu
+   ```
+   
+Note that:
 
 1. Running with a small tensor on the XPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu` works as expected.
 1. Running with a slightly bigger tensor on the XPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 3_000_000 xpu` does not work.
-Running on the CPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 3_000_000 cpu` does work.
+1. Running the larger tensor on a CPU with `mpiexec.hydra -n 2 run_allgather.sh ccl 3_000_000 cpu` does work.
 

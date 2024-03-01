@@ -14,6 +14,7 @@
    oneccl-bind-pt==2.1.100+xpu \
    --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
    ```
+   the version numbers are those specified by [these](https://intel.github.io/intel-extension-for-pytorch/index.html#installation?platform=gpu&version=v2.1.10%2Bxpu) ipex docs.
 1. Use MPI and the `run_allgather.sh` script to launch `allgather.py`:
    ```shell
    mpiexec.hydra -n 2 run_allgather.sh ccl 2_000_000 xpu
